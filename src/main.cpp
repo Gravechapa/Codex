@@ -1,6 +1,7 @@
-#include <fstream>
+#include "UM32.hpp"
 
 int main()
 {
-    file.open("textures/tiles", std::ifstream::in | std::ifstream::binary);
+    UM32 universal_machine("./sandmark.umz");
+    return 0;
 }
