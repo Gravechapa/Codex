@@ -27,3 +27,6 @@ include_directories(${SOURCE_ROOT}/headers)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/sandmark.umz
     ${CMAKE_CURRENT_BINARY_DIR}/sandmark.umz COPYONLY)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/codex.umz
+    ${CMAKE_CURRENT_BINARY_DIR}/codex.umz COPYONLY)
