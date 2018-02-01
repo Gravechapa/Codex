@@ -24,14 +24,26 @@ public:
 private:
 
     static void mov(UM32* self);
+    static void array_index(UM32* self);
+    static void array_amendment(UM32* self);
+    static void add(UM32* self);
+    static void mul(UM32* self);
+    static void div(UM32* self);
+    static void not_and(UM32* self);
+    static void halt(UM32* self);
+    static void alloc(UM32* self);
+    static void dealloc(UM32* self);
+    static void out(UM32* self);
+    static void in(UM32* self);
+    static void load_program(UM32* self);
+    static void orthography(UM32* self);
 
     static operator_fn _operators[];
     std::vector<uint32_t> _regs = std::vector<uint32_t>(8, 0);
     std::vector<uint32_t> _programm;
-    std::unordered_map<uint32_t, uint32_t> _memory;
+    std::unordered_map<uint32_t, std::vector<uint32_t>> _memory;
     std::queue<uint32_t> _freed_memory;
-    bool _readiness = false;
-    bool _stop = false;
+    bool _stop = true;
 
     uint32_t* _instruction_pointer = nullptr;
 
