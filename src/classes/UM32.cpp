@@ -155,8 +155,8 @@ void UM32::out(UM32* self)
 
 void UM32::in(UM32* self)
 {
-    unsigned char symbol = static_cast<unsigned char>(std::cin.get());
-    if (symbol == '\n')
+    char symbol = std::cin.get();
+    if (symbol == EOF)
         {
             self->_regs[self->_memory[0][self->_instruction_pointer] & 0b111] = 0xffffffff;
         }
