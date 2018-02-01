@@ -41,7 +41,7 @@ private:
 
     static operator_fn _operators[];
     std::vector<uint32_t> _regs = std::vector<uint32_t>(8, 0);
-    std::unordered_map<uint32_t, std::vector<uint32_t>> _memory;
+    std::vector<std::vector<uint32_t>> _memory;
     std::queue<uint32_t> _freed_memory;
     uint32_t _memory_counter = 1;
     bool _stop = true;

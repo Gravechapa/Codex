@@ -38,7 +38,7 @@ void UM32::run()
 
 void UM32::stop()
 {
-    _memory = std::unordered_map<uint32_t, std::vector<uint32_t>>();
+    _memory = std::vector<std::vector<uint32_t>>();
     _freed_memory = std::queue<uint32_t>();
     _regs = std::vector<uint32_t>(8, 0);
     _memory_counter = 1;
@@ -66,7 +66,7 @@ void UM32::load_program(std::string name)
             program.push_back(boost::endian::endian_reverse(buffer));
             pos += 4;
         }
-    _memory.emplace(std::pair<uint32_t, std::vector<uint32_t>>(0, program));
+    _memory.push_back(program);
     _instruction_pointer = 0;
     _stop = false;
 }
@@ -128,13 +128,13 @@ void UM32::alloc(UM32* self)
     std::vector<uint32_t> data(self->_regs[instruction & 0b111], 0);
     if (self->_freed_memory.empty())
         {
-            self->_memory.emplace(std::pair<uint32_t, std::vector<uint32_t>>(self->_memory_counter, std::move(data)));
+            self->_memory.emplace_back(std::move(data));
             self->_regs[instruction >> 3 & 0b111] = self->_memory_counter;
             ++self->_memory_counter;
         }
     else
         {
-            self->_memory.emplace(std::pair<uint32_t, std::vector<uint32_t>>(self->_freed_memory.front(), std::move(data)));
+            self->_memory[self->_freed_memory.front()] = std::move(data);
             self->_regs[instruction >> 3 & 0b111] = self->_freed_memory.front();
             self->_freed_memory.pop();
         }
@@ -143,7 +143,6 @@ void UM32::alloc(UM32* self)
 void UM32::dealloc(UM32* self)
 {
     uint32_t instruction = self->_memory[0][self->_instruction_pointer];
-    self->_memory.erase(self->_regs[instruction & 0b111]);
     self->_freed_memory.push(self->_regs[instruction & 0b111]);
 }
 
