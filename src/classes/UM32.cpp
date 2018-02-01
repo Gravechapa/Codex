@@ -150,11 +150,20 @@ void UM32::dealloc(UM32* self)
 void UM32::out(UM32* self)
 {
     std::cout << static_cast<unsigned char>(self->_regs[self->_memory[0][self->_instruction_pointer] & 0b111]);
+    std::cout.flush();
 }
 
 void UM32::in(UM32* self)
 {
-    self->_regs[self->_memory[0][self->_instruction_pointer] & 0b111] = static_cast<unsigned char>(std::cin.get());
+    unsigned char symbol = static_cast<unsigned char>(std::cin.get());
+    if (symbol == '\n')
+        {
+            self->_regs[self->_memory[0][self->_instruction_pointer] & 0b111] = 0xffffffff;
+        }
+    else
+        {
+            self->_regs[self->_memory[0][self->_instruction_pointer] & 0b111] = symbol;
+        }
 }
 
 void UM32::load_program(UM32* self)

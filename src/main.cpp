@@ -4,6 +4,7 @@
 int main()
 {
     std::cout << "Input 'y' for test" << std::endl;
+    std::cout.flush();
     char symbol;
     std::cin >> symbol;
     UM32 universal_machine;
