@@ -1,6 +1,7 @@
 #include "UM32.hpp"
 #include <iostream>
 #include <limits>
+#include <string>
 
 int main()
 {
@@ -8,14 +9,18 @@ int main()
     std::cout.flush();
     char symbol;
     std::cin >> symbol;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     UM32 universal_machine;
     if (symbol == 'y')
         {
             universal_machine.load_program("sandmark.umz");
             universal_machine.run();
         }
-    universal_machine.load_program("codex.umz");
+    std::cout << "Input file name" << std::endl;
+    std::cout.flush();
+    std::string name;
+    std::cin >> name;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    universal_machine.load_program(name);
     universal_machine.run();
     return 0;
 }
