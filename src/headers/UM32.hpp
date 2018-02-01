@@ -15,6 +15,7 @@ class UM32
 {
 
 public:
+    UM32(){}
     UM32(std::string file);
     void load_program(std::string file);
     void run();
