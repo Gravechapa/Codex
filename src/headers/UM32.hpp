@@ -46,6 +46,6 @@ private:
     uint32_t _memory_counter = 1;
     bool _stop = true;
 
-    uint32_t _instruction_pointer = 0;
+    int32_t _instruction_pointer = 0;
 
 };

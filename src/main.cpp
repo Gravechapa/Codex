@@ -1,5 +1,6 @@
 #include "UM32.hpp"
 #include <iostream>
+#include <limits>
 
 int main()
 {
@@ -7,6 +8,7 @@ int main()
     std::cout.flush();
     char symbol;
     std::cin >> symbol;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     UM32 universal_machine;
     if (symbol == 'y')
         {

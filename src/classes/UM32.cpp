@@ -84,7 +84,7 @@ void UM32::mov(UM32* self)
 void UM32::array_index(UM32* self)
 {
     uint32_t instruction = self->_memory[0][self->_instruction_pointer];
-    self->_regs[instruction >> 6 & 0b111] =self->_memory[self->_regs[instruction >> 3 & 0b111]][self->_regs[instruction & 0b111]];
+    self->_regs[instruction >> 6 & 0b111] = self->_memory[self->_regs[instruction >> 3 & 0b111]][self->_regs[instruction & 0b111]];
 }
 
 void UM32::array_amendment(UM32* self)
