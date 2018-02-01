@@ -143,6 +143,7 @@ void UM32::alloc(UM32* self)
 void UM32::dealloc(UM32* self)
 {
     uint32_t instruction = self->_memory[0][self->_instruction_pointer];
+    self->_memory[self->_regs[instruction & 0b111]] = std::vector<uint32_t>();
     self->_freed_memory.push(self->_regs[instruction & 0b111]);
 }
 
