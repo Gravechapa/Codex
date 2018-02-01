@@ -30,3 +30,6 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/sandmark.umz
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/codex.umz
     ${CMAKE_CURRENT_BINARY_DIR}/codex.umz COPYONLY)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/codex.bin
+    ${CMAKE_CURRENT_BINARY_DIR}/codex.bin COPYONLY)
