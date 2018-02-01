@@ -157,11 +157,11 @@ void UM32::in(UM32* self)
 void UM32::load_program(UM32* self)
 {
     self->_memory[0] = self->_memory[self->_regs[*self->_instruction_pointer >> 3 & 0b111]];
-    self->_instruction_pointer = &self->_memory[0][self->_regs[*self->_instruction_pointer & 0b111]];
+    self->_instruction_pointer = &self->_memory[0][self->_regs[*self->_instruction_pointer & 0b111] - 1];
 }
 
 void UM32::orthography(UM32* self)
 {
-    self->_regs[*self->_instruction_pointer >> 25 & 0b111] = *self->_instruction_pointer & 0xffffff;
+    self->_regs[*self->_instruction_pointer >> 25 & 0b111] = *self->_instruction_pointer & 0x1ffffff;
 }
 
